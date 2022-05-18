@@ -24,13 +24,18 @@ export const ButtonContainer = styled.button`
            `
          : null}
 
-   &:hover {
+   &:hover:not(:disabled) {
       background-color: ${({theme}) => theme.back.accent};
       color: ${({theme}) => theme.text.sub.head};
       opacity: 0.85;
    }
 
-   &:active {
+   &:active:not(:disabled) {
       transform: scale(0.95);
+   }
+
+   &:disabled {
+      opacity: 0.5;
+      cursor: default;
    }
 `;
