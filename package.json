@@ -1,5 +1,5 @@
 {
-   "name": "start-react",
+   "name": "jpt-react-todo",
    "version": "0.1.0",
    "private": true,
    "homepage": "/",
@@ -7,7 +7,7 @@
    "readme": "README.md",
    "markdown": "github",
    "publisher": "@pmfoysal",
-   "description": "Basic Starter Project Setup for ReactJS!",
+   "description": "A Simple Modern ToDo App build with ReactJS, Nodejs and MongoDB!",
    "author": {
       "name": "Foysal Ahmmed",
       "email": "pmfoysal@gmail.com",
@@ -23,14 +23,14 @@
    ],
    "keywords": [
       "reactjs",
-      "starter-project",
-      "reactjs-project",
-      "reactjs-starter",
-      "reactjs-starter-project"
+      "todo",
+      "todoapp",
+      "nodejs",
+      "mongodb"
    ],
    "repository": {
       "type": "source-code",
-      "url": "https://github.com/pmfoysal/start-react"
+      "url": "https://github.com/pmfoysal/jpt-react-todo"
    },
    "cracoConfig": "src/configs/craco.config.js",
    "dependencies": {
@@ -55,7 +55,8 @@
       "start": "craco start",
       "build": "craco build",
       "test": "craco test",
-      "eject": "craco eject"
+      "eject": "craco eject",
+      "deploy": "craco build && firebase deploy"
    },
    "eslintConfig": {
       "extends": [
