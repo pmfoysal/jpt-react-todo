@@ -7,6 +7,9 @@ import InputBox from '@shared/inputBox';
 import MainContainer from '@shared/mainContainer';
 import {AuthCheckGroup} from '@shared/authForm.styled';
 import {SigninContainer} from '../signin/signin.styled';
+import isValid from '@validations/isValid';
+import emailPassSignup from 'customs/auth/emailPassSignup';
+import useUser from '@hooks/useUser';
 
 export default function Signup() {
    const [name, setName] = useState('');
@@ -16,21 +19,40 @@ export default function Signup() {
    const [disable, setDisable] = useState(true);
    const [loading, setLoading] = useState(false);
 
+   const user = useUser();
+
    function inputHandler(setter) {
       return function (event) {
          setter(event.target.value);
       };
    }
 
+   const data = {
+      email,
+      password,
+      image,
+      name,
+   };
+
    function signupHandler() {
-      setDisable(true);
-      setLoading(true);
+      const nameOk = isValid(name, 'Name');
+      const imageOk = isValid(image, 'Photo');
+      const emailOk = isValid(email, 'Email');
+      const passOk = isValid(password, 'Password');
+      if (nameOk && imageOk && emailOk && passOk) {
+         setDisable(true);
+         setLoading(true);
+         emailPassSignup(data);
+      }
    }
 
+   console.log(user);
+
    useEffect(() => {
-      if (email && password) setDisable(false);
-      else setDisable(true);
-   }, [email, password]);
+      if (name && image && email && password) {
+         setDisable(false);
+      } else setDisable(true);
+   }, [name, image, email, password]);
 
    return (
       <SigninContainer>
