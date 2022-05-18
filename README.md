@@ -1,4 +1,4 @@
-# ToDo - Simple & Modern ToDo App
+# ToDo - A Simple & Modern Todo App
 
 A Simple Modern ToDo App build with ReactJS, Nodejs and MongoDB! Live: https://todoreactjpt.web.app
 
