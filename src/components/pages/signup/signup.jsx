@@ -1,25 +1,26 @@
 import Button from '@shared/button';
-import React, {useEffect, useState} from 'react';
 import RefLink from '@shared/refLink';
 import AuthForm from '@shared/authForm';
 import Checkbox from '@shared/checkbox';
 import InputBox from '@shared/inputBox';
+import isValid from '@validations/isValid';
+import {Navigate, useLocation} from 'react-router-dom';
 import MainContainer from '@shared/mainContainer';
+import {StoreContext} from '@contexts/storeProvider';
 import {AuthCheckGroup} from '@shared/authForm.styled';
 import {SigninContainer} from '../signin/signin.styled';
-import isValid from '@validations/isValid';
 import emailPassSignup from 'customs/auth/emailPassSignup';
-import useUser from '@hooks/useUser';
+import React, {useContext, useEffect, useState} from 'react';
 
 export default function Signup() {
+   const {user} = useContext(StoreContext);
+   const location = useLocation();
    const [name, setName] = useState('');
    const [image, setImage] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [disable, setDisable] = useState(true);
    const [loading, setLoading] = useState(false);
-
-   const user = useUser();
 
    function inputHandler(setter) {
       return function (event) {
@@ -46,13 +47,16 @@ export default function Signup() {
       }
    }
 
-   console.log(user);
-
    useEffect(() => {
       if (name && image && email && password) {
          setDisable(false);
       } else setDisable(true);
    }, [name, image, email, password]);
+
+   if (user?.uid) {
+      const from = location?.state?.from?.pathname || '/';
+      return <Navigate to={from} replace />;
+   }
 
    return (
       <SigninContainer>

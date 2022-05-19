@@ -41,3 +41,10 @@ export const AuthCheckGroup = styled.span`
    gap: 1rem;
    font-size: 1.4rem;
 `;
+
+export const AuthFormPara = styled.p`
+   font-size: 1.4rem;
+   color: ${({theme}) => theme.text.main.para};
+   text-transform: capitalize;
+   font-weight: 550;
+`;
